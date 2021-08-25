@@ -81,5 +81,6 @@ eel$receiver <- factor(eel$receiver)
 data <- rbind(eel, data)
 
 
-
+# 7. Select data from this eel study ####
+data <- data[data$transmitter %in% eel$transmitter,]
 
