@@ -55,6 +55,11 @@ data$station_name <- factor(data$station_name)
 data$receiver <- factor(data$receiver)
 
 
+# 5. Add station coordinates ####
+network <- read_csv("./data/raw/receivernetwork.csv")
+network$station_name <- factor(network$station_name)
+
+data <- left_join(data, network, by = "station_name")
 
 
 
