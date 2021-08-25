@@ -62,4 +62,24 @@ network$station_name <- factor(network$station_name)
 data <- left_join(data, network, by = "station_name")
 
 
+# 6. Add moment of release ####
+eel <- read_csv("./data/raw/eel_metadata.csv")
+eel$receiver <- "none"
+eel <- eel %>%
+  select(release_time, transmitter, station_name, receiver, release_latitude, release_longitude) %>%
+  rename(datetime = release_time,
+         latitude = release_latitude,
+         longitude = release_longitude)
+
+# Set columns
+eel$datetime <- dmy_hm(eel$datetime)
+eel$transmitter <- factor(eel$transmitter)
+eel$station_name <- factor(eel$station_name)
+eel$receiver <- factor(eel$receiver)
+
+# Bind release to dataset
+data <- rbind(eel, data)
+
+
+
 
