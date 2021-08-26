@@ -58,6 +58,9 @@ data$receiver_id <- factor(data$receiver_id)
 # 5. Add station coordinates ####
 network <- read_csv("./data/raw/receivernetwork.csv")
 network$station_name <- factor(network$station_name)
+network <- network %>%
+  rename("deploy_latitude" = "latitude",
+         "deploy_longitude" = "longitude")
 
 data <- left_join(data, network, by = "station_name")
 
@@ -69,8 +72,8 @@ eel <- eel %>%
   select(release_time, transmitter, station_name, receiver_id, release_latitude, release_longitude) %>%
   rename(date_time = release_time,
          tag_id = transmitter,
-         latitude = release_latitude,
-         longitude = release_longitude)
+         deploy_latitude = release_latitude,
+         deploy_longitude = release_longitude)
 
 # Set columns
 eel$date_time <- dmy_hm(eel$date_time)
