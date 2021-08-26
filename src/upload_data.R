@@ -88,3 +88,6 @@ data <- rbind(eel, data)
 # 7. Select data from this eel study ####
 data <- data[data$tag_id %in% eel$tag_id,]
 data$animal_project_code <- "Reelease"
+data$animal_project_code <- factor(data$animal_project_code)
+
+
