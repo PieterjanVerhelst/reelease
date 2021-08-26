@@ -90,10 +90,14 @@ data <- data[data$tag_id %in% eel$tag_id,]
 data$animal_project_code <- "Reelease"
 data$animal_project_code <- factor(data$animal_project_code)
 
+
 # 8. Remove redundant data ####
 rm(eel)
 rm(network)
 rm(thelma_data)
 rm(vemco_data)
+
+
+write.csv(data, "./data/interim/data.csv")
 
 
