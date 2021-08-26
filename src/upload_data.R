@@ -15,11 +15,11 @@ vemco_data <-  list.files(path = "./data/raw/vemco/",
 # Rename and remove columns
 vemco_data <- vemco_data %>%
   rename("date_time" = "Date and Time (UTC)",
-         "receiver" = "Receiver",
+         "receiver_id" = "Receiver",
          "tag_id" = "Transmitter",
          "station_name" = "Station Name")
 
-vemco_data <- select(vemco_data, date_time, tag_id, station_name, receiver)
+vemco_data <- select(vemco_data, date_time, tag_id, station_name, receiver_id)
 vemco_data$date_time <- ymd_hms(vemco_data$date_time)
 
 
@@ -29,12 +29,12 @@ thelma_data <- read_csv("./data/raw/thelma/johnring2020thelma.csv")
 # Rename and remove columns
 thelma_data <- thelma_data %>%
   rename("date_time" = "Date and Time (UTC)",
-         "receiver" = "Receiver",
+         "receiver_id" = "Receiver",
          "tag_id" = "ID",
          "protocol" = "Protocol")
 
 thelma_data$station_name <- "Johnring"
-thelma_data <- select(thelma_data, date_time, protocol, tag_id, station_name, receiver)
+thelma_data <- select(thelma_data, date_time, protocol, tag_id, station_name, receiver_id)
 
 # Filter relevant transmitter IDs
 thelma_data <- filter(thelma_data, protocol == "R64K-69kHz")
@@ -52,7 +52,7 @@ data <- rbind(vemco_data, thelma_data)
 # 4. Adjust column types ####
 data$tag_id <- factor(data$tag_id)
 data$station_name <- factor(data$station_name)
-data$receiver <- factor(data$receiver)
+data$receiver_id <- factor(data$receiver_id)
 
 
 # 5. Add station coordinates ####
@@ -64,9 +64,9 @@ data <- left_join(data, network, by = "station_name")
 
 # 6. Add moment of release ####
 eel <- read_csv("./data/raw/eel_metadata.csv")
-eel$receiver <- "none"
+eel$receiver_id <- "none"
 eel <- eel %>%
-  select(release_time, transmitter, station_name, receiver, release_latitude, release_longitude) %>%
+  select(release_time, transmitter, station_name, receiver_id, release_latitude, release_longitude) %>%
   rename(date_time = release_time,
          tag_id = transmitter,
          latitude = release_latitude,
@@ -76,7 +76,7 @@ eel <- eel %>%
 eel$date_time <- dmy_hm(eel$date_time)
 eel$tag_id <- factor(eel$tag_id)
 eel$station_name <- factor(eel$station_name)
-eel$receiver <- factor(eel$receiver)
+eel$receiver_id <- factor(eel$receiver_id)
 
 # Bind release to dataset
 data <- rbind(eel, data)
