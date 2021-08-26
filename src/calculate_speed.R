@@ -13,7 +13,7 @@ library(actel)
 # Source functions
 source("./src/calculate_speed_function.R")
 
-# Filter Gudena detection data
+# Load data
 residency <- read_csv("./data/interim/residency.csv")
 residency$X1 <- NULL
 
