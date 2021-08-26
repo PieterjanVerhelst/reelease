@@ -16,27 +16,18 @@ source("./src/get_nearest_stations.R")
 source("./src/get_timeline.r")
 
 
-# Load data
-data <- read_csv("./data/interim/detection_data.csv")
-data$X1 <- NULL
-
-# Filter project detection data
-subset <- filter(data, animal_project_code == "2004_Gudena")
-head(subset)
-
 # Add 'count' column
-subset$counts <- 1
+data$counts <- 1
 
 # Good practice to sort the dataset
-subset %<>% arrange(tag_id, date_time)
+data %<>% arrange(tag_id, date_time)
 
 # Import distance matrix
-distance_matrix <- read_csv("./data/external/distance_matrices/distancematrix_2004_gudena.csv")
-
+distance_matrix <- read_csv("./data/external/distancematrix_reelease.csv")
 
 
 # Extract eel codes
-eels_all <- subset %>% 
+eels_all <- data %>% 
   select(tag_id) %>% 
   unique()
 eels_all <- eels_all[[1]]
@@ -44,7 +35,7 @@ eels_all
 
 
 # Extract stations
-stations_all <- subset %>% 
+stations_all <- data %>% 
   select(station_name) %>%
   unique()
 stations_all <- stations_all[[1]]
@@ -70,9 +61,9 @@ assert_that(
             stations_all[which(!stations_all %in% colnames(distance_all))]))
 
 
-# Set temporal and distance treshold
+# Set temporal and distance treshhold
 max_limit <- 3600 # seconds
-max_dist <- 1005 #  meters; based on detection range
+max_dist <- 1000 #  meters; based on detection range
 
 
 # For each eel, the nearest stations are found by `get_nearest_stations()` and saved in a list, `near_stations`
@@ -88,13 +79,13 @@ names(near_stations_all) <- stations_all
 # For each eel, smoothing is applied by calling function `get_timeline`
 tracks <- purrr::map(eels_all, 
                      function(eel) 
-                       get_timeline(subset, 
+                       get_timeline(data, 
                                     proxy_stations = near_stations_all,
                                     eel = eel, verbose = FALSE))
 
 
 # You get a list of data.frames. You can view them separately
-View(tracks[[5]])
+View(tracks[[1]])
 
 
 ## In case you want to run the smoothing only for one eel from `eels` (e.g; the first one with `code = "A69-1601-52622"`) and modify default parameters `max_limit` (e.g. 1 hour) and `verbose` (TRUE):
