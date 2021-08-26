@@ -1,6 +1,6 @@
 # Calculate migration speeds between consecutive detection stations
 # by Pieterjan Verhelst
-# Pieterjan.Verhelst@UGent.be
+# pieterjan.verhelst@inbo.be
 
 
 # Packages
