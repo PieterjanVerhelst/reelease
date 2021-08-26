@@ -121,7 +121,7 @@ residency <- residency[, c("animal_project_code", "tag_id","station_name","recei
 
 
 # Write csv
-write.csv(residency, "./data/interim/residencies/residency_2004_gudena.csv")
+write.csv(residency, "./data/interim/residency.csv")
 
 
 
