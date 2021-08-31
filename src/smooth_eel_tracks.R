@@ -67,7 +67,7 @@ assert_that(
 
 # Set temporal and distance treshold
 max_limit <- 3600 # seconds
-max_dist <- 1005 #  meters; based on detection range
+max_dist <- 1000 #  meters; based on detection range
 
 
 # For each eel, the nearest stations are found by `get_nearest_stations()` and saved in a list, `near_stations`
