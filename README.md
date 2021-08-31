@@ -6,7 +6,7 @@ Study on the effect of externally attached pop-off data storage tags in a natura
 
 * `/src:`
 
-1. upload_data.R: Upload detection data from raw folder
+1. `upload_data.R`: Upload detection data from raw folder
 2. `smooth_eel_tracks.R`: Smooths duplicates and calculates residencies per eel per station. Therefore, it calls the following two functions:
 	+ 2a. `get_nearest_stations.R`: general function to extract the smoothed track for one eel (via its `transmitter ID`)
 	+ 2b. `get_timeline.R`: function to get the stations which are near a given station (where near means that the distance is smaller than a certain given limit, e.g. detection range).
