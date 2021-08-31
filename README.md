@@ -13,5 +13,6 @@ Study on the effect of externally attached pop-off data storage tags in a natura
 		- --> Generate residency datasets per project and store them in `/interim/residencies`
 3. `calculate_speed.R`: Calculate movement speeds between consecutive detection stations. Also calculates swim distance, swim time, cumulative swim distance and station distance from source station.
 	+ 3a. `calculate_speed_function.R`: function to calculate speed between consecutive displacements; based on a function in Hugo Flavio's `actel` package
+	+ 3b. `calculate_sourcedistance_function.R`: function to calculate the station distance from a 'source' station; based on a function in Hugo Flavio's `actel` package
 4. `merge_eel_characteristics.R`: Add eel meta data to the speed dataset
 5. `speed_analysis.R`: Analyse migration speed in relation to external tagging with PDSTs
