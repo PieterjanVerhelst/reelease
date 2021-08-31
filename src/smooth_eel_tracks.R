@@ -17,7 +17,7 @@ source("./src/get_timeline.r")
 
 # Load data
 data <- read_csv("./data/interim/data.csv")
-data$X1 <- NULL
+data[1] <- NULL
 
 # Add 'count' column
 data$counts <- 1
@@ -47,7 +47,7 @@ stations_all
 
 
 # Rename column `X1` to `station` in distance dataframe
-distance_matrix %<>% rename(station_name = X1)
+distance_matrix %<>% rename(station_name = ...1)
 head(distance_matrix)
 
 
