@@ -12,6 +12,7 @@ library(actel)
 
 # Source functions
 source("./src/calculate_speed_function.R")
+source("./src/calculate_sourcedistance_function.R")
 
 # Load data
 residency <- read_csv("./data/interim/residency.csv")
@@ -50,6 +51,15 @@ speed <- speed %>%
 
 # Replace the remaining NA values with previous non-NA value
 speed$totaldistance_m <- zoo::na.locf(speed$totaldistance_m)
+
+
+# Calculate the the station distance from a 'source' station
+speed <- distanceSource(speed, "last to first", distance_matrix)
+
+# Set 'NA' to '0'
+speed <- speed %>% 
+  replace_na(list(distance_to_source_m = 0))
+
 
                
 
