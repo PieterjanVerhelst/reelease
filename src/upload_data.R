@@ -77,6 +77,7 @@ eel <- eel %>%
 
 # Set columns
 eel$date_time <- dmy_hm(eel$date_time)
+eel$date_time <- eel$date_time - 3600   # correct for winter time
 eel$tag_id <- factor(eel$tag_id)
 eel$station_name <- factor(eel$station_name)
 eel$receiver_id <- factor(eel$receiver_id)
