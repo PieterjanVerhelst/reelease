@@ -15,7 +15,7 @@ source("./src/calculate_speed_function.R")
 
 # Load data
 residency <- read_csv("./data/interim/residency.csv")
-residency$X1 <- NULL
+residency$...1 <- NULL
 
 # Load distance matrix
 # Make sure the first column is not containing the station names
