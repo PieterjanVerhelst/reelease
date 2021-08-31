@@ -4,7 +4,7 @@
 
 # Load data
 speed <- read_csv("./data/interim/speed.csv")
-speed$X1 <- NULL
+speed[1] <- NULL
 
 # Load eel metadata
 eel <- read_csv("./data/raw/eel_metadata.csv")
