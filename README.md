@@ -16,3 +16,4 @@ Study on the effect of externally attached pop-off data storage tags in a natura
 	+ 3b. `calculate_sourcedistance_function.R`: function to calculate the station distance from a 'source' station; based on a function in Hugo Flavio's `actel` package
 4. `merge_eel_characteristics.R`: Add eel meta data to the speed dataset
 5. `speed_analysis.R`: Analyse migration speed in relation to external tagging with PDSTs
+6. `release_analysis.R`: Analyse time at release site and swim direction
