@@ -37,7 +37,7 @@ aggregate(speed$speed_m_s, list(speed$dst), mean)
 boxplot(speed_m_s~dst, speed,
         xlab = "DST",
         ylab = "Migration speed (m/s)",
-        ylim=c(0, 5), cex.lab=1.25, cex.axis=1.25)
+        ylim=c(0, 3), cex.lab=1.25, cex.axis=1.25)
 
 # Summarise max tracking time
 max_time <- speed %>%
