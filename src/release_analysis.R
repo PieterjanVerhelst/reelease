@@ -65,6 +65,15 @@ residence <- left_join(residence, eel, by = "tag_id")
 residence$dst <- factor(residence$dst)
 
 
+# Remove 6 recaptured eels from analysis
+residence <- residence[!(residence$tag_id == "A69-9006-5421" |
+                           residence$tag_id == "A69-9006-5426" |
+                           residence$tag_id == "A69-9006-5429" |
+                           residence$tag_id == "A69-9006-5430" |
+                           residence$tag_id == "A69-9006-5433" |
+                           residence$tag_id == "A69-9006-5440" ),]
+
+
 # Calculate summaries ####
 aggregate(residence$total_time, list(residence$dst), median)
 
@@ -78,13 +87,13 @@ boxplot(total_time~dst, residence,
 # make a named list for the location of the number of eels
 eel_per_class <- residence %>% group_by(dst) %>% 
   summarise(n_eels = n_distinct(tag_id))
-eels_per_class_list <- rep(40, nrow(eel_per_class))
+eels_per_class_list <- rep(110, nrow(eel_per_class))
 names(eels_per_class_list) <- as.vector(eel_per_class$dst)
 # create ggplot (cfr. styling earlier plot)
 fig_residence <- ggplot(residence, aes(x = dst,
                                                  y = total_time)) +
   geom_boxplot() +
-  scale_y_continuous(breaks = seq(0, 40, by = 5), limits=c(0,40)) +
+  scale_y_continuous(breaks = seq(0, 110, by = 10), limits=c(0,110)) +
   theme_minimal() +
   ylab("Residence time (h)") +
   geom_text(data = data.frame(),
