@@ -4,6 +4,15 @@
 
 
 
+# Remove 6 recaptured eels from analysis
+speed <- speed[!(speed$tag_id == "A69-9006-5421" |
+                    speed$tag_id == "A69-9006-5426" |
+                    speed$tag_id == "A69-9006-5429" |
+                    speed$tag_id == "A69-9006-5430" |
+                    speed$tag_id == "A69-9006-5433" |
+                    speed$tag_id == "A69-9006-5440" ),]
+
+
 # Check distances
 check <- select(speed, tag_id, swimdistance_m, totaldistance_m, distance_to_source_m)
 
