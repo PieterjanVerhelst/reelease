@@ -21,6 +21,12 @@ max <- speed %>%
   group_by(tag_id) %>%
   summarise(distance_to_source_m = max(distance_to_source_m))
 
+# Summarise max swim time
+speed_no_na <- na.omit(speed)
+max_time <- speed_no_na %>%
+  group_by(tag_id) %>%
+  summarise(swimtime_s = max(swimtime_s))
+
 # Select eels that migrated > 10000
 eel_selection <- filter(max, distance_to_source_m > 10000)
 
