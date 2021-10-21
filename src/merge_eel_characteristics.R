@@ -3,8 +3,8 @@
 # pieterjan.verhelst@inbo.be
 
 # Load data
-speed <- read_csv("./data/interim/speed.csv")
-speed[1] <- NULL
+#speed <- read_csv("./data/interim/speed.csv")
+#speed[1] <- NULL
 
 # Load eel metadata
 eel <- read_csv("./data/raw/eel_metadata.csv")
