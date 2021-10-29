@@ -12,6 +12,16 @@ speed <- speed[!(speed$tag_id == "A69-9006-5421" |
                     speed$tag_id == "A69-9006-5433" |
                     speed$tag_id == "A69-9006-5440" ),]
 
+# Remove 5 eels migrating through the Great Belt
+speed <- speed[!(speed$tag_id == "A69-9006-5428" |
+                   speed$tag_id == "A69-9006-5442" |
+                   speed$tag_id == "A69-9006-5444" |
+                   speed$tag_id == "A69-9006-5449" |
+                   speed$tag_id == "A69-9006-5452" ),]
+
+# Remove 1 eels migrating through the Little Belt
+speed <- speed[!(speed$tag_id == "A69-9006-5439"),]
+
 
 # Check distances
 check <- select(speed, tag_id, swimdistance_m, totaldistance_m, distance_to_source_m)
@@ -64,7 +74,7 @@ total_tracking$total_time <- as.numeric(total_tracking$total_time)
 total_tracking$total_speed_km_day <- total_tracking$distance_to_source_km / total_tracking$total_time
 
 # Calculate summaries
-aggregate(total_tracking$total_speed_km_day, list(total_tracking$dst), mean)
+aggregate(total_tracking$total_speed_km_day, list(total_tracking$dst), median)
 
 # Create simple boxplot of speed
 boxplot(total_speed_km_day~dst, total_tracking,
