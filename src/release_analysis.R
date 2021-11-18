@@ -92,7 +92,7 @@ names(eels_per_class_list) <- as.vector(eel_per_class$dst)
 # create ggplot (cfr. styling earlier plot)
 fig_residence <- ggplot(residence, aes(x = dst,
                                                  y = total_time)) +
-  geom_boxplot() +
+  geom_point(alpha = 1.5, size = 3) +
   scale_y_continuous(breaks = seq(0, 110, by = 10), limits=c(0,110)) +
   theme_minimal() +
   ylab("Residence time (h)") +
@@ -100,7 +100,7 @@ fig_residence <- ggplot(residence, aes(x = dst,
             aes(x = names(eels_per_class_list),
                 y = eels_per_class_list,
                 label = as.character(eel_per_class$n_eels)),
-            col = 'black', size = 4) +
+            col = 'black', size = 6) +
   scale_x_discrete(limits=c("0","1")) +    # Changes oreder of plots
   xlab("DST") +
   theme(axis.title.y = element_text(margin = margin(r = 10))) +
