@@ -92,6 +92,7 @@ names(eels_per_class_list) <- as.vector(eel_per_class$dst)
 # create ggplot (cfr. styling earlier plot)
 fig_residence <- ggplot(residence, aes(x = dst,
                                                  y = total_time)) +
+  geom_boxplot() +
   geom_point(alpha = 1.5, size = 3) +
   scale_y_continuous(breaks = seq(0, 110, by = 10), limits=c(0,110)) +
   theme_minimal() +
